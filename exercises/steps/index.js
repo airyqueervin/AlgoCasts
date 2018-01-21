@@ -17,6 +17,25 @@
 //       '### '
 //       '####'
 
-function steps(n) {}
+function steps(n) {
+  let hashTag = '#'
+  let res = '#';
+  let reapHash = hashTag.repeat(n);
+  let counter = 1;
+  if (n > 1) {
+    while (counter <= n) {
+      console.log(res)
+      if (counter === n) {
+        res += '#'
+      } else {
+        res += '# ';
+
+      }
+      counter++
+    }
+  }
+
+  // console.log(reapHash)
+}
 
 module.exports = steps;
