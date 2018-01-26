@@ -17,25 +17,68 @@
 //       '### '
 //       '####'
 
+function steps(n, row = 0, stair = '') {
+  // base case
+  if ( n === row) {
+    return;
+  }
+  // recursive case
+  if (n === stair.length) {
+    console.log(stair);
+    return steps(n, row + 1);
+  }
+  if (stair.length <= row) {
+    stair += '#';
+  } else {
+    stair += ' ';
+  }
+  steps(n, row, stair);
+}
+
+module.exports = steps;
+
+
+/*
+
+// iterative solution
+function steps(n) {
+  for (let row = 0; row < n; row++) {
+    let stair = '';
+    for (let col = 0; col < n; col++) {
+      if (col <= row) {
+        stair += '#';
+      } else {
+        stair += ' ';
+      }
+    }
+    console.log(stair);
+  }
+}
+
+OG non working solution 
 function steps(n) {
   let hashTag = '#'
+  let num = n;
   let res = '#';
-  let reapHash = hashTag.repeat(n);
+  let reapHash = hashTag.repeat(n).split('');
+  // console.log('REAP',reapHash);
   let counter = 1;
   if (n > 1) {
-    while (counter <= n) {
-      console.log(res)
+    while (counter < n) {
+      console.log(res);
       if (counter === n) {
         res += '#'
       } else {
-        res += '# ';
+        res += ' '.repeat(num-1);
 
       }
       counter++
     }
+    
+  } else {
+    console.log(hashTag);
   }
 
   // console.log(reapHash)
 }
-
-module.exports = steps;
+*/
