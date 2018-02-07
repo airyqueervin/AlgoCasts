@@ -24,6 +24,24 @@
 
 const Queue = require('./queue');
 
-function weave(sourceOne, sourceTwo) {}
+function weave(sourceOne, sourceTwo) {
+  // create a new queue and return that queue
+  const weaveQ = new Queue();
+  // loop over the queues. 
+    // check if the queue has something inside so peek the first queue and peek the second queue. 
+  while (sourceOne.peek() !== undefined || sourceTwo.peek() !== undefined) {
+    // check the value of the first queue and make sure it isn't undefined
+    if (sourceOne.peek() !== undefined) {
+      // add to removed value to the weavedQ
+      weaveQ.add(sourceOne.remove());
+    }
+      // do the same for the second queue
+    if (sourceTwo.peek() !== undefined) {
+      weaveQ.add(sourceTwo.remove());
+    }
+  }
+  // return the woven q
+  return weaveQ;
+}
 
 module.exports = weave;
