@@ -19,7 +19,7 @@ class LinkedList {
     this.head = new Node(val, this.head)
   }
   
-  listSize() {
+  size() {
     let counter = 0;
     let node = this.head;
     while (node) {

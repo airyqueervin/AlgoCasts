@@ -28,15 +28,15 @@ describe('Insert First', () => {
   });
 });
 
-describe('listSize', () => {
+describe('Size', () => {
   test('returns the number of items in the linked list', () => {
     const l = new List();
-    expect(l.listSize()).toEqual(0);
+    expect(l.size()).toEqual(0);
     l.insertFirst(1);
     l.insertFirst(1);
     l.insertFirst(1);
     l.insertFirst(1);
-    expect(l.listSize()).toEqual(4);
+    expect(l.size()).toEqual(4);
   });
 });
 
@@ -63,36 +63,36 @@ describe('GetLast', () => {
 describe('Clear', () => {
   test('empties out the list', () => {
     const l = new List();
-    expect(l.listSize()).toEqual(0);
+    expect(l.size()).toEqual(0);
     l.insertFirst(1);
     l.insertFirst(1);
     l.insertFirst(1);
     l.insertFirst(1);
-    expect(l.listSize()).toEqual(4);
+    expect(l.size()).toEqual(4);
     l.clear();
-    expect(l.listSize()).toEqual(0);
+    expect(l.size()).toEqual(0);
   });
 });
 
 describe('RemoveFirst', () => {
-  test('removes the first node when the list has a listSize of one', () => {
+  test('removes the first node when the list has a size of one', () => {
     const l = new List();
     l.insertFirst('a');
     l.removeFirst();
-    expect(l.listSize()).toEqual(0);
+    expect(l.size()).toEqual(0);
     expect(l.getFirst()).toEqual(null);
   });
 
-  test('removes the first node when the list has a listSize of three', () => {
+  test('removes the first node when the list has a size of three', () => {
     const l = new List();
     l.insertFirst('c');
     l.insertFirst('b');
     l.insertFirst('a');
     l.removeFirst();
-    expect(l.listSize()).toEqual(2);
+    expect(l.size()).toEqual(2);
     expect(l.getFirst().data).toEqual('b');
     l.removeFirst();
-    expect(l.listSize()).toEqual(1);
+    expect(l.size()).toEqual(1);
     expect(l.getFirst().data).toEqual('c');
   });
 });
@@ -119,7 +119,7 @@ describe('RemoveLast', () => {
 
     l.removeLast();
 
-    expect(l.listSize()).toEqual(1);
+    expect(l.size()).toEqual(1);
     expect(l.head.data).toEqual('a');
   });
 
@@ -130,7 +130,7 @@ describe('RemoveLast', () => {
     l.insertFirst('a');
     l.removeLast();
 
-    expect(l.listSize()).toEqual(2);
+    expect(l.size()).toEqual(2);
     expect(l.getLast().data).toEqual('b');
   });
 });
@@ -142,7 +142,7 @@ describe('InsertLast', () => {
 
     l.insertLast('b');
 
-    expect(l.listSize()).toEqual(2);
+    expect(l.size()).toEqual(2);
     expect(l.getLast().data).toEqual('b');
   });
 });
