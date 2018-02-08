@@ -32,11 +32,7 @@ class Queue {
         this.deQ.push(this.enQ.pop());
       }
     }
-
-    if (this.deQ.peek()) {
-      // return the the last pop of 
-      return this.deQ.pop();
-    }
+    return this.deQ.pop();
   }
 
   peek() {
