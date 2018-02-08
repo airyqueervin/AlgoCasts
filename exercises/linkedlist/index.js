@@ -12,28 +12,21 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = null;
-    this.tail = null;
-    this.size = 0;
   }
   
   
   insertFirst(val) {
-    // create a new node with the value
-    const newNode = new Node(val);
-    // check if the head is null
-    if (this.head === null) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      const lastHead = this.head;
-      this.head = newNode;
-      this.head.next = lastHead;
-    }
-    this.size++;
+    this.head = new Node(val, this.head)
   }
   
   listSize() {
-    return this.size;
+    let counter = 0;
+    let node = this.head;
+    while (node) {
+      counter++;
+      node = node.next;
+    }
+    return counter;
   }
 
   getFirst() {
@@ -41,79 +34,57 @@ class LinkedList {
   }
 
   getLast() {
-    return this.tail;
+    if (!this.head) return null;
+    let node = this.head;
+    while(node) {
+      if (!node.next) {
+        return node;
+      }
+      node = node.next;
+    }
   }
 
   clear() {
     this.head = null;
-    this.tail = null;
-    this.size = 0;
   }
 
   removeFirst() {
-    this.head ? this.head = this.head.next : this.head = null; 
-    this.size--;
+    if (!this.head) return;
+    this.head = this.head.next;
   }
 
   removeLast() {
-    // check if the tail has a value
-    if (!this.head || this.size === 1) {
-      this.clear();
-    } else {
-      let currNode = this.head
-      let prevNode;
-      // while the currNode node has a next node that is not undefined loop
-      while(currNode.next) {
-        // save a reference to the current node
-        prevNode = currNode
-        // set the currNode to the next node 
-        currNode = currNode.next
-      }
-      this.tail = prevNode;
-      this.size--;
+    if (!this.head) return;
+    if (!this.head.next) {
+      this.head = null;
+      return;
     }
-      // may need to iterate through the list
-      // take the last node and reassing it's previous node
-    // iterate through the nodes, if we've found the target value of the tail then we are on the prev node and should set that to the current tail
+    let prevNode = this.head;
+    let node = this.head.next;
+    while (node.next) {
+      prevNode = node;
+      node = node.next;
+    }
+    prevNode.next = null;
+
   }
 
   insertLast(val) {
-    // create a new node
-    const newNode = new Node(val);
-    // check the last node by getting the tail
-    if (!this.tail) {
-      this.head = newNode;
-      this.tail = newNode;
-      this.size
-    } else {
-      // save a ref to the tail node 
-      let temp = this.tail;
-      // set the old tail to the newNode
-      temp.next = newNode;
-      // set the tail to the newNode
-      this.tail = newNode;
-    }
-    // increase the size
-    this.size++;
+    const last = this.getLast();
+    last ? last.next = new Node(val) : this.head = new Node(val);
   }
 
-  getAt(targetIndex) {
-    // looking to find a node's data at a given index
-    if (typeof targetIndex !== 'number') return null;
-    // check if the index is greater than the size of the list
-    if (targetIndex > this.size) return null;
-
-    let targetNode = this.head;
-    let i = 0;
-    // iterate through the list
-    // when loop counter or size reaches the target index
-    while(targetIndex !== i) {
-      targetNode = targetNode.next;
-      // increment a counter or maybe loop through the size
-      i++
+  getAt(index) {
+    let counter = 0;
+    let node = this.head;
+    while (node) {
+      if (counter === index) {
+        return node;
+      }
+      counter++
+      node = node.next;
     }
-    // return the node. 
-    return targetNode; 
+    return null;
   }
   // Everything below this is from the solution. I tappped out
   removeAt(index) {
