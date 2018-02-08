@@ -14,6 +14,36 @@
 
 const Stack = require('./stack');
 
-class Queue {}
+class Queue {
+  constructor() {
+    this.enQ = new Stack();
+    this.deQ = new Stack();
+  }
+
+  add(val) {
+    // add all values to the first stack
+    this.enQ.push(val);
+  }
+
+  remove() {
+    // peek and see if the deq is empty
+    if (!this.deQ.peek()) {
+      while(this.enQ.peek()) {
+        this.deQ.push(this.enQ.pop());
+      }
+    }
+
+    if (this.deQ.peek()) {
+      // return the the last pop of 
+      return this.deQ.pop();
+    }
+  }
+
+  peek() {
+    // check if the deq is empty
+      // if it is return the element at the bottom of the first stack else return the top of the second stack
+    return this.deQ.peek() ? this.deQ.peek() : this.enQ.data[0];
+  }
+}
 
 module.exports = Queue;
