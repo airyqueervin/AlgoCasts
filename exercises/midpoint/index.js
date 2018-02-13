@@ -13,13 +13,24 @@
 //   midpoint(l); // returns { data: 'b' }
 
 function midpoint(list) {
-  // take the list and get the size
-  // calculate the midpoint of the number
-  // call get 
-  // console.log(list)
-  let size = list.size();
-  let midPoint = Math.floor(size / 2);
-  return size % 2 !== 0 ? list.getAt(midPoint) : list.getAt(midPoint-1)
+  let slow = list.getFirst();
+  let fast = list.getFirst();
+  while (fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  return slow;
 }
 
 module.exports = midpoint;
+
+// my solution
+// function midpoint(list) {
+//   // take the list and get the size
+//   // calculate the midpoint of the number
+//   // call get 
+//   // console.log(list)
+//   let size = list.size();
+//   let midPoint = Math.floor(size / 2);
+//   return size % 2 !== 0 ? list.getAt(midPoint) : list.getAt(midPoint-1)
+// }
